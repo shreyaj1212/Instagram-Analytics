@@ -22,7 +22,7 @@ def plot_all():
 
     plt.plot(time_labels, followees,"-o", label='number of people @shreyyajaiin follows')
     plt.plot(time_labels, followers,"-o", label ='number of people who follow @shreyyajaiin')
-    plt.title("Analytics for @shreyyajaiin")
+    plt.title("Data for @shreyyajaiin")
     plt.xlabel("Number of Days After January 1, 2019")
     #plt.ylabel("Number")
     plt.legend()
