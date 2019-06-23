@@ -96,13 +96,33 @@ def get_days(month, year):
 		sum = sum + determine_num_days_per_month(i, year)
 	return sum
 
+def get_num_posts():
+	now = datetime.datetime.now()
+	url = "https://inkphy.com/user/shreyyajaiin"
+	html = urlopen(url)
+	soup = BeautifulSoup(html, 'lxml')
+	type(soup)
+
+	text = soup.get_text()
+
+	i=0
+
+	all_span = soup.find_all('span')
+	for span in all_span:
+		i=i+1
+		if i==5:
+			numPosts = span.text
+			print("@shreyyajaiin has " + numPosts +  " posts.")
+	return numPosts
+
 def write_to_index():
 	numFollowers = get_num_followers()
 	numFollowees = get_num_follows()
+	numPosts = get_num_posts()
 	now = to_int(datetime.datetime.now())
 	with open('index.csv', 'a') as csv_file:
 		writer = csv.writer(csv_file)
-		writer.writerow([now, numFollowers, numFollowees])
+		writer.writerow([now, numFollowers, numFollowees, numPosts])
 
 write_to_index()
 
